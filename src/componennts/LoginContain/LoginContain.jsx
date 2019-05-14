@@ -9,21 +9,18 @@ const FormItem = Form.Item;
 class LoginContain extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
-    // function callBack(res) {
-    //   if (res.code == 0) {
-    //     browserHistory.push('/main')
-    //   }
-    // }
+    
     this.props.form.validateFields(['userName', 'password'], (err, values) => {
+       // values.callback=function(res){
+      //   if(res.code!=0){
+          
+      //   }
+      // }
       if (!err) {
         console.log('Received values of form: ', values);
-        history.push('/main')
-        // let param = {
-        //   username: values['userName'],
-        //   password: values['password'],
-        //   callback: callBack()
-        // };
-        // sdk.SMCSDK_User_Auth.login(param)
+        history.push({pathname:'/main'})
+       
+        // sdk.SMCSDK_User_Auth.login(values)
 
       }
     });
