@@ -1,0 +1,14 @@
+.loginForm {
+    max-width: 300px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 2px 2px 4px #444;
+    margin-top: 50px;
+    padding: 10px;
+  }
+.formForgot {
+    float: right;
+  }
+.formButton {
+    width: 100%;
+  }
