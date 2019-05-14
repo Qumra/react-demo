@@ -273,6 +273,8 @@ module.exports = function(webpackEnv) {
         // Support React Native Web
         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
         'react-native': 'react-native-web',
+         // xwx683487
+        '@':path.join(__dirname,'..','./src') //@表示项目目录中src的这一层目录 ,使用别名
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding
@@ -354,6 +356,8 @@ module.exports = function(webpackEnv) {
                       },
                     },
                   ],
+                   //xwx683487 按需导入antd组件库下载babel-plugin-import配置
+                  [require.resolve('babel-plugin-import'), { libraryName: 'antd', style: 'css' }] 
                 ],
                 // This is a feature of `babel-loader` for webpack (not Babel itself).
                 // It enables caching results in ./node_modules/.cache/babel-loader/
@@ -396,6 +400,18 @@ module.exports = function(webpackEnv) {
             // to a file, but in development "style" loader enables hot editing
             // of CSS.
             // By default we support CSS Modules with the extension .module.css
+            // xwx683487 开启css模块化后，antd按需加载样式无效后的配置，exclude
+            {
+              test: cssRegex,
+              exclude: /node_modules|antd\.css/,
+              use: getStyleLoaders({
+                importLoaders: 1,
+                sourceMap: isEnvProduction && shouldUseSourceMap,
+                modules: true, //开启css模块化
+                localIdentName: `[name]_[local]_[hash:base64:5]`
+              }),
+              sideEffects: true,
+            },
             {
               test: cssRegex,
               exclude: cssModuleRegex,
